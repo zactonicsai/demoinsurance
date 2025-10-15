@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reputation Shield - Insurance for the Digital Age</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+        }
+        .section-title {
+            @apply text-3xl font-bold text-gray-800 mb-4 text-center;
+        }
+        .section-subtitle {
+            @apply text-lg text-gray-600 mb-8 text-center max-w-3xl mx-auto;
+        }
+        .card {
+            @apply bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300;
+        }
+        .feature-icon {
+            @apply w-6 h-6 text-green-500 mr-3;
+        }
+        .risk-icon {
+             @apply w-6 h-6 text-red-500 mr-3;
+        }
+        .cta-button {
+            @apply bg-orange-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 transition-colors duration-300 text-lg;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-800">
+                <a href="#">ReputationShield</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#risks" class="text-gray-600 hover:text-blue-700">The Risks</a>
+                <a href="#coverage" class="text-gray-600 hover:text-blue-700">Coverage</a>
+                <a href="#pricing" class="text-gray-600 hover:text-blue-700">Pricing</a>
+                <a href="#calculator" class="text-gray-600 hover:text-blue-700">Calculator</a>
+                <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-colors">Get a Quote</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+             <a href="#risks" class="block py-2 px-4 text-sm hover:bg-gray-200">The Risks</a>
+             <a href="#coverage" class="block py-2 px-4 text-sm hover:bg-gray-200">Coverage</a>
+             <a href="#pricing" class="block py-2 px-4 text-sm hover:bg-gray-200">Pricing</a>
+             <a href="#calculator" class="block py-2 px-4 text-sm hover:bg-gray-200">Calculator</a>
+             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-200">Get a Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white text-center py-20 px-6">
+            <h1 class="text-5xl font-bold mb-4">In the Age of AI, Your Reputation is Your Biggest Risk.</h1>
+            <p class="text-xl max-w-3xl mx-auto mb-8">One deepfake, one viral lie, or one coordinated attack can destroy your business overnight. We provide the shield to protect what you've built.</p>
+            <a href="#calculator" class="cta-button">See Your Risk & Get Protected</a>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">What's Your Reputation Risk?</h2>
+                <p class="section-subtitle">Use our simple calculator to determine your risk level and find the right coverage for your business.</p>
+                
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center card p-8">
+                    <!-- Calculator Inputs -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="industry" class="block text-sm font-medium text-gray-700 mb-2">Select Your Industry:</label>
+                            <select id="industry" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="1.0">Other</option>
+                                <option value="1.2">Retail / E-commerce</option>
+                                <option value="1.3">Professional Services (Accounting, Law)</option>
+                                <option value="1.4">Restaurant / Hospitality</option>
+                                <option value="1.5">Healthcare / Wellness</option>
+                                <option value="1.5">Financial Services</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="revenue" class="block text-sm font-medium text-gray-700 mb-2">Annual Revenue: <span id="revenue-value" class="font-bold text-blue-700">$1,000,000</span></label>
+                            <input type="range" id="revenue" min="100000" max="5000000" step="50000" value="1000000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                         <button id="calculateBtn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-lg">Calculate My Coverage</button>
+                    </div>
+
+                    <!-- Calculator Results -->
+                    <div id="results" class="bg-gray-100 p-6 rounded-lg text-center hidden">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Recommended Coverage</h3>
+                        <div id="recommendation" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-lg">
+                            <p class="font-bold text-3xl" id="coverage-amount">$500K</p>
+                            <p class="mt-2">Estimated Premium: <span id="premium-range" class="font-semibold">$4,500 - $7,500</span></p>
+                            <p>Deductible: <span id="deductible-amount" class="font-semibold">$10,000</span></p>
+                        </div>
+                         <p class="text-xs text-gray-500 mt-4">This is an estimate. Final pricing depends on your specific online exposure and risk profile. <a href="#contact" class="text-blue-600 hover:underline">Get a firm quote today</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's the Risk? Section -->
+        <section id="risks" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">What's The Risk?</h2>
+                <p class="section-subtitle">Your business could be critically damaged overnight by threats you can't control. The cost of a single attack can range from $50,000 to over $500,000, with recovery taking 6-12 months.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card flex items-start">
+                        <i data-lucide="video" class="risk-icon flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">Deepfake Videos</h3>
+                            <p class="text-gray-600">AI-generated videos of you saying or doing things that never happened, causing immediate and severe brand damage.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start">
+                        <i data-lucide="message-square-quote" class="risk-icon flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">Fake Reviews & Social Media Attacks</h3>
+                            <p class="text-gray-600">Coordinated campaigns to destroy your reputation with false reviews and defamatory social media posts.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start">
+                        <i data-lucide="newspaper" class="risk-icon flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">AI-Generated "News Articles"</h3>
+                            <p class="text-gray-600">Fake but realistic-looking articles claiming your product is dangerous or your business is unethical.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start">
+                        <i data-lucide="user-x" class="risk-icon flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">Impersonation Scams</h3>
+                            <p class="text-gray-600">Criminals posing as your business to defraud customers, leading to lawsuits and loss of trust.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start">
+                        <i data-lucide="megaphone" class="risk-icon flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">Disinformation Campaigns</h3>
+                            <p class="text-gray-600">Targeted false information spread to your customers or partners to undermine your business relationships.</p>
+                        </div>
+                    </div>
+                    <div class="card flex items-start">
+                         <i data-lucide="shield-alert" class="risk-icon flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2">Targeted Harassment</h3>
+                            <p class="text-gray-600">Vocal owners or leadership become targets, impacting both personal safety and business stability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Covered? Section -->
+        <section id="coverage" class="py-20 bg-blue-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">What's Covered?</h2>
+                <p class="section-subtitle">Our policy provides a comprehensive response to get you back on your feet quickly.</p>
+                <div class="max-w-4xl mx-auto">
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Crisis PR & Communications:</strong> Professional help to manage the narrative and fight back.</li>
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Legal Defense Costs:</strong> Covers lawsuits from fake claims and defamation.</li>
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Revenue Loss:</strong> Reimburses income you lose during the attack and recovery period.</li>
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Digital Forensics:</strong> Expert investigation to find the source of the attack.</li>
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Reputation Restoration:</strong> Services to rebuild your online presence and good name.</li>
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Monitoring Services:</strong> Early warning systems to detect potential threats before they escalate.</li>
+                        <li class="flex items-center text-lg"><i data-lucide="check-circle-2" class="feature-icon"></i><strong>Customer Notification:</strong> Costs associated with transparently informing your customers about an incident.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Needs This? -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">If Your Reputation = Your Revenue, You Need This.</h2>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-4 text-gray-700">
+                    <p class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0"></i>Businesses with an online presence & reviews.</p>
+                    <p class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0"></i>Local businesses vulnerable to fake review attacks.</p>
+                    <p class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0"></i>Companies with vocal owners or leadership.</p>
+                    <p class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0"></i>Healthcare, financial services, and restaurants.</p>
+                    <p class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0"></i>Anyone dealing with sensitive client information.</p>
+                    <p class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0"></i>Businesses in competitive or controversial industries.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Comparison Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">What Happens When You're Attacked?</h2>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="border-2 border-red-200 rounded-lg p-8 bg-red-50">
+                        <h3 class="text-2xl font-bold text-red-700 mb-4 text-center">Without Insurance</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><i data-lucide="x" class="w-6 h-6 text-red-500 mr-3 mt-1 flex-shrink-0"></i>Scramble to find a crisis PR firm ($15K-$50K retainer).</li>
+                            <li class="flex items-start"><i data-lucide="x" class="w-6 h-6 text-red-500 mr-3 mt-1 flex-shrink-0"></i>Pay expensive lawyers out of pocket ($10K-$100K+).</li>
+                            <li class="flex items-start"><i data-lucide="x" class="w-6 h-6 text-red-500 mr-3 mt-1 flex-shrink-0"></i>Lose customers and revenue while you try to figure it out.</li>
+                            <li class="flex items-start"><i data-lucide="x" class="w-6 h-6 text-red-500 mr-3 mt-1 flex-shrink-0"></i>Drain your cash reserves, take on debt, or even close down.</li>
+                        </ul>
+                    </div>
+                    <div class="border-2 border-green-200 rounded-lg p-8 bg-green-50">
+                        <h3 class="text-2xl font-bold text-green-700 mb-4 text-center">With ReputationShield</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"></i><strong>24/7 Hotline Access:</strong> Get expert help within hours, not days.</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"></i><strong>Experts Deployed Immediately:</strong> We handle the PR, legal, and forensics.</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"></i><strong>Costs Covered:</strong> Your policy pays for the response (minus your deductible).</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"></i><strong>Business Keeps Running:</strong> You stay focused on what you do best.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Simple Pricing for Small Business</h2>
+                <p class="section-subtitle">Transparent pricing to fit your budget. We believe this protection should be accessible to everyone.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
+                    <div class="card transform hover:-translate-y-2">
+                        <h3 class="text-2xl font-bold text-blue-800">Basic</h3>
+                        <p class="text-4xl font-bold my-4">$250K</p>
+                        <p class="text-gray-500 mb-6">Coverage</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li><span class="font-semibold">Annual Premium:</span> $2,500 - $4,000</li>
+                            <li><span class="font-semibold">Deductible:</span> $5,000</li>
+                        </ul>
+                    </div>
+                    <div class="card transform hover:-translate-y-2 border-2 border-blue-600 relative">
+                        <p class="absolute top-0 -translate-y-1/2 bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">Most Popular</p>
+                        <h3 class="text-2xl font-bold text-blue-800">Plus</h3>
+                        <p class="text-4xl font-bold my-4">$500K</p>
+                        <p class="text-gray-500 mb-6">Coverage</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li><span class="font-semibold">Annual Premium:</span> $4,500 - $7,500</li>
+                            <li><span class="font-semibold">Deductible:</span> $10,000</li>
+                        </ul>
+                    </div>
+                    <div class="card transform hover:-translate-y-2">
+                        <h3 class="text-2xl font-bold text-blue-800">Pro</h3>
+                        <p class="text-4xl font-bold my-4">$1M</p>
+                        <p class="text-gray-500 mb-6">Coverage</p>
+                        <ul class="space-y-2 text-gray-600">
+                             <li><span class="font-semibold">Annual Premium:</span> $8,000 - $12,000</li>
+                             <li><span class="font-semibold">Deductible:</span> $15,000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center mt-8 text-gray-600">
+                    <p>Pricing varies by industry, revenue, and online exposure.</p>
+                    <p class="font-semibold">Payment plans available | Bundle with cyber insurance and save 15%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Examples -->
+        <section class="py-20">
+             <div class="container mx-auto px-6">
+                <h2 class="section-title">Real Examples, Real Costs</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i data-lucide="utensils-crossed" class="w-12 h-12 text-blue-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">Local Restaurant</h3>
+                        <p class="text-gray-600">A competitor launched a fake food poisoning campaign on social media, leading to an immediate drop in customers.</p>
+                        <p class="font-bold text-red-600 mt-4">Cost: $85K in lost revenue + crisis response.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i data-lucide="landmark" class="w-12 h-12 text-blue-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">Small Accounting Firm</h3>
+                        <p class="text-gray-600">A deepfake video of the owner "confessing" to fraud went viral among local business groups.</p>
+                        <p class="font-bold text-red-600 mt-4">Cost: $150K in legal fees + client losses.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i data-lucide="shopping-cart" class="w-12 h-12 text-blue-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">Retail Shop</h3>
+                        <p class="text-gray-600">A coordinated 1-star review bombing campaign pushed their online rating from 4.8 to 1.5 in 48 hours.</p>
+                        <p class="font-bold text-red-600 mt-4">Cost: $40K in reputation repair + 30% revenue drop.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works -->
+        <section class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Get Protected in 3 Easy Steps</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
+                    <div>
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                        <h3 class="text-xl font-semibold mb-2">Quick Assessment</h3>
+                        <p class="text-gray-600">A 15-minute call to learn about your business and online presence.</p>
+                    </div>
+                    <div>
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                        <h3 class="text-xl font-semibold mb-2">Custom Quote</h3>
+                        <p class="text-gray-600">Within 24-48 hours, we'll provide the right coverage at the best price.</p>
+                    </div>
+                     <div>
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                        <h3 class="text-xl font-semibold mb-2">Activate Protection</h3>
+                        <p class="text-gray-600">Your coverage starts immediately upon payment. It's that simple.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Why Now? -->
+        <section class="py-20 bg-blue-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Why Now? The Threat is Growing Daily.</h2>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-lg">
+                    <p class="flex items-start"><i data-lucide="trending-up" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0"></i>AI makes these attacks easier and cheaper to launch every day.</p>
+                    <p class="flex items-start"><i data-lucide="shield-off" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0"></i>80% of small businesses have no protection for this specific risk.</p>
+                    <p class="flex items-start"><i data-lucide="bomb" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0"></i>One successful attack can wipe out years of your hard work.</p>
+                    <p class="flex items-start"><i data-lucide="swords" class="w-8 h-8 text-red-500 mr-3 flex-shrink-0"></i>Your competitors might already be protected, giving them an edge.</p>
+                </div>
+                <p class="text-center text-2xl font-semibold text-gray-800 mt-12">The question isn't "Will it happen?" — it's "When?"</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="bg-blue-800 text-white py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-4">Don't Wait for a Crisis. Take Action Today.</h2>
+                <p class="text-xl max-w-3xl mx-auto mb-8">Protect what you've built. Get a free, no-obligation quote and see how affordable peace of mind can be.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-8">
+                     <div class="text-lg"><i class="inline-block mr-2" data-lucide="phone"></i>Call: (800) 555-SHLD</div>
+                     <div class="text-lg"><i class="inline-block mr-2" data-lucide="mail"></i>Email: quotes@reputationshield.com</div>
+                     <div class="text-lg"><i class="inline-block mr-2" data-lucide="globe"></i>Quote: Get a Quote Online</div>
+                </div>
+                <a href="#" class="cta-button">Get My Free Quote</a>
+                <p class="mt-6 font-semibold bg-orange-100 text-orange-800 inline-block px-4 py-2 rounded-lg">LIMITED TIME: First 3 months FREE when you bundle with cyber insurance!</p>
+            </div>
+        </section>
+        
+        <!-- Testimonial -->
+        <section class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <blockquote class="max-w-3xl mx-auto">
+                    <p class="text-2xl italic text-gray-700">"I never thought it would happen to me. My restaurant was targeted by a fake review campaign that almost put me out of business. ReputationShield was a lifesaver. Don't make the same mistake I did."</p>
+                    <cite class="block mt-4 font-semibold text-gray-800">— Jane D., Local Restaurant Owner</cite>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+             <p>&copy; 2025 ReputationShield Inc. All Rights Reserved.</p>
+             <p class="text-sm mt-2">ReputationShield is a licensed insurance provider. Coverage is subject to the terms, conditions, and exclusions of the policy.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Calculator Logic
+        const revenueSlider = document.getElementById('revenue');
+        const revenueValue = document.getElementById('revenue-value');
+        const industrySelect = document.getElementById('industry');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resultsDiv = document.getElementById('results');
+        
+        const coverageAmountEl = document.getElementById('coverage-amount');
+        const premiumRangeEl = document.getElementById('premium-range');
+        const deductibleAmountEl = document.getElementById('deductible-amount');
+
+        const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+
+        revenueSlider.addEventListener('input', () => {
+            revenueValue.textContent = formatCurrency(revenueSlider.value);
+        });
+        
+        const pricingTiers = {
+            low: { coverage: '$250K', premium: '$2,500 - $4,000', deductible: '$5,000' },
+            medium: { coverage: '$500K', premium: '$4,500 - $7,500', deductible: '$10,000' },
+            high: { coverage: '$1M', premium: '$8,000 - $12,000', deductible: '$15,000' }
+        };
+
+        function calculateInsurance() {
+            const revenue = parseInt(revenueSlider.value);
+            const industryMultiplier = parseFloat(industrySelect.value);
+
+            // Simple risk score calculation
+            const baseScore = 10;
+            const revenueScore = revenue / 100000; // 1 point per $100k
+            const totalRiskScore = (baseScore + revenueScore) * industryMultiplier;
+
+            let recommendation;
+            if (totalRiskScore < 35) {
+                recommendation = pricingTiers.low;
+            } else if (totalRiskScore >= 35 && totalRiskScore < 60) {
+                recommendation = pricingTiers.medium;
+            } else {
+                recommendation = pricingTiers.high;
+            }
+            
+            updateResults(recommendation);
+        }
+
+        function updateResults(tier) {
+            coverageAmountEl.textContent = tier.coverage;
+            premiumRangeEl.textContent = tier.premium;
+            deductibleAmountEl.textContent = tier.deductible;
+            resultsDiv.classList.remove('hidden');
+        }
+        
+        calculateBtn.addEventListener('click', calculateInsurance);
+        
+        // Initial calculation on page load
+        calculateInsurance();
+
+    </script>
+</body>
+</html>
